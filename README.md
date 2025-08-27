@@ -1,4 +1,4 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/DZharenko/python-project-83/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/DZharenko/python-project-83/actions)
 
-[![Python CI](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml/badge.svg)](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml)
+[![Python CI](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml/badge.svg)](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml)    
