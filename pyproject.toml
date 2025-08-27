@@ -1,0 +1,14 @@
+[project]
+name = "hexlet-code"
+version = "0.1.0"
+description = "Page_analyzer"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.1.2",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.10",
+]
