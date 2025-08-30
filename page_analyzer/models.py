@@ -1,22 +1,27 @@
 # models.py
-import psycopg2
-from urllib.parse import urlparse
 from datetime import datetime
+from urllib.parse import urlparse
+
+import psycopg2
 import validators
 from flask import flash
+
 
 def get_db_connection():
     """Установка соединения с базой данных"""
     import os
+
     from dotenv import load_dotenv
     load_dotenv()
     
     return psycopg2.connect(os.getenv('DATABASE_URL'))
 
+
 def normalize_url(url):
     """Нормализация URL"""
     parsed_url = urlparse(url)
     return f"{parsed_url.scheme}://{parsed_url.netloc}"
+
 
 def validate_url(url):
     """Валидация URL"""
@@ -30,6 +35,7 @@ def validate_url(url):
         return "Некорректный URL"
     
     return None
+
 
 def add_url(url):
     """Добавление URL в базу данных"""
@@ -49,7 +55,8 @@ def add_url(url):
         else:
             # Добавляем новый URL
             cur.execute(
-                "INSERT INTO urls (name, created_at) VALUES (%s, %s) RETURNING id",
+                "INSERT INTO urls (name, created_at) "
+                "VALUES (%s, %s) RETURNING id",
                 (normalized_url, datetime.now())
             )
             url_id = cur.fetchone()[0]
@@ -65,6 +72,7 @@ def add_url(url):
         cur.close()
         conn.close()
 
+
 def get_url_by_id(id):
     """Получение URL по ID"""
     conn = get_db_connection()
@@ -76,6 +84,7 @@ def get_url_by_id(id):
     finally:
         cur.close()
         conn.close()
+
 
 def get_all_urls():
     """Получение всех URL"""

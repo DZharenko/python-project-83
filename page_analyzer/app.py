@@ -1,8 +1,9 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, flash
-from .models import validate_url, add_url, get_url_by_id, get_all_urls   
+from flask import Flask, flash, redirect, render_template, request, url_for
+
+from .models import add_url, get_all_urls, get_url_by_id, validate_url
 
 load_dotenv()
 
@@ -13,6 +14,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/urls", methods=['POST'])
 def urls_post():
@@ -27,14 +29,16 @@ def urls_post():
     try:
         url_id = add_url(url)
         return redirect(url_for('url_detail', id=url_id))
-    except Exception as e:
+    except Exception:
         flash('Произошла ошибка при добавлении URL', 'danger')
         return render_template("index.html", url=url), 500
     
+
 @app.route("/urls")
 def urls_list():
     urls = get_all_urls()
     return render_template("urls.html", urls=urls)
+
 
 @app.route("/urls/<int:id>")
 def url_detail(id):
@@ -57,7 +61,6 @@ def url_detail(id):
     
 #     print(f"✅ Найден URL: {url}")  # Отладочное сообщение
 #     return render_template("url.html", url=url)
-
 
 
 if __name__ == "__main__":
