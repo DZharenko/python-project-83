@@ -1,85 +1,28 @@
-/* Основные стили */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Герой секция */
-.hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 3rem 0;
-    margin-bottom: 2rem;
+.min-vh-100 {
+    min-height: 100vh;
 }
 
-.hero-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-/* Секция анализа */
-.section-analysis {
-    margin-bottom: 3rem;
-}
-
-.card {
-    border: none;
-    border-radius: 15px;
-}
-
-.card-body {
-    padding: 2rem;
-}
-
-.form-control {
-    border-radius: 10px;
-    border: 2px solid #e9ecef;
-}
-
-.form-control:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-}
-
-.btn-primary {
-    background-color: #667eea;
-    border-color: #667eea;
-    border-radius: 10px;
-    padding: 0.75rem;
+.navbar-brand {
     font-weight: 600;
 }
 
-.btn-primary:hover {
-    background-color: #5a67d8;
-    border-color: #5a67d8;
-    transform: translateY(-2px);
-    transition: all 0.3s ease;
+.input-group-lg .form-control {
+    border-radius: 0.375rem 0 0 0.375rem;
 }
 
-/* Футер */
-.footer {
-    background-color: #343a40;
-    color: white;
-    padding: 2rem 0;
-    margin-top: 3rem;
+.input-group-lg .btn {
+    border-radius: 0 0.375rem 0.375rem 0;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .card-body {
-        padding: 1.5rem;
-    }
+.table th {
+    font-weight: 600;
+}
+
+.alert {
+    border: none;
+    border-radius: 0.5rem;
 }
