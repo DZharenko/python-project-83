@@ -3,20 +3,59 @@
 [![Python CI](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml/badge.svg)](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml)
 
 🐍 Python Project 83
+# 🔍 Page Analyzer
+
 Live Demo: https://python-project-83-fjtf.onrender.com
 
-📋 Описание проекта
-Веб-приложение на Python, развернутое на платформе Render
+## 📋 Описание проекта
 
-🚀 Технологии
-Backend: Python
+**Page Analyzer** — это веб-приложение, которое позволяет добавлять сайты, запускать их проверки и сохранять результаты (код ответа, заголовки, описание). Подходит для анализа SEO-данных и доступности сайтов.
 
-Деплой: Render
+## 🚀 Возможности
+- Добавление и нормализация URL-адресов
+- Проверка сайтов по HTTP-запросу
+- Извлечение и сохранение:
+  - Статуса ответа (HTTP Status)
+  - `<title>`
+  - `<h1>`
+  - `<meta name="description">`
+- Просмотр истории всех проверок
+- Удобный интерфейс с Bootstrap 5
 
-Протокол: HTTPS
+---
 
-🔗 Быстрый доступ
-markdown
-[Python Project 83](https://python-project-83-fjtf.onrender.com)
-📊 Статус
-https://img.shields.io/website?url=https%253A%252F%252Fpython-project-83-fjtf.onrender.com&label=Render&style=for-the-badge
+
+## 🚀 Технологии
+
+- Python 3.12.3
+- Flask
+- PostgreSQL
+- BeautifulSoup
+- Psycopg2
+- Requests
+
+## 🔧 Использование
+
+Чтобы установить проект, клонируйте репозиторий:
+```
+git clone https://github.com/DZharenko/python-project-83.git
+```
+Для установки зависимостей запустите:
+```
+uv run flask --debug --app page_analyzer:app run
+```
+Инициализируйте базу данных:
+```
+psql -f database.sql
+```
+Запустите приложение:
+```
+uv run gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
+```
+Для удаления проекта запустите:
+```
+rm -rf python-project-83
+```
+
+
+## ⭐Star this repo if you found it useful! ⭐
