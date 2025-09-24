@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, url_for
-from models import (
+from page_analyzer.models import (
     add_url,
     add_url_check,
     get_all_urls,
