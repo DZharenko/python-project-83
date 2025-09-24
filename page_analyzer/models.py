@@ -6,7 +6,7 @@ import psycopg2
 import requests
 import validators
 from flask import flash
-from html_parser import html_parser
+from page_analyzer.html_parser import html_parser
 from psycopg2.extras import RealDictCursor
 
 
