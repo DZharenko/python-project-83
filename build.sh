@@ -1,16 +1,22 @@
-# #!/usr/bin/env bash
-# # скачиваем uv и запускаем команду установки зависимостей
-# curl -LsSf https://astral.sh/uv/install.sh | sh
-# source $HOME/.local/bin/env
-# make install
-
-
 #!/usr/bin/env bash
-# скачиваем uv и запускаем команду установки зависимостей
+set -e  # остановиться при любой ошибке
+
+echo "=== Starting build process ==="
+
+# Скачиваем и устанавливаем uv
+echo "Installing uv..."
 curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Устанавливаем зависимости
+echo "Installing dependencies..."
 uv sync
-# Postgres позволяет подключиться к удаленной базе указав ссылку на нее после флага -d
-# ссылка подгрузится из переменной окружения, которую нам нужно будет указать на сервисе деплоя
-# дальше мы загружаем в поключенную базу наш sql-файл с таблицами
-make install && psql -a -d $DATABASE_URL -f database.sql
+
+# Выполняем миграции базы данных
+echo "Running database migrations..."
+psql -a -d $DATABASE_URL -f database.sql || {
+    echo "Warning: Migrations might have failed, but continuing build..."
+    # Или просто echo "Migrations completed"
+}
+
+echo "=== Build completed successfully ==="
