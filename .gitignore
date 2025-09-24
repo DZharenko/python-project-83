@@ -5,3 +5,5 @@ check_table.py
 test_db.py
 test_insert.py
 migrate.py
+create_db.py
+.ruff.cache
