@@ -1,24 +1,26 @@
 # models.py
-import psycopg2
-from psycopg2.extras import RealDictCursor 
-from urllib.parse import urlparse
 from datetime import datetime
+from urllib.parse import urlparse
+
+import psycopg2
+import requests
 import validators
 from flask import flash
-import requests
 from html_parser import html_parser
-
+from psycopg2.extras import RealDictCursor
 
 
 def get_db_connection(cursor_factory=None):
     
     import os
+
     from dotenv import load_dotenv
     load_dotenv()
     
     return psycopg2.connect(os.getenv('DATABASE_URL'),
                             cursor_factory=cursor_factory,
                             )
+
 
 def normalize_url(url):
     
@@ -57,7 +59,8 @@ def add_url(url):
             url_id = existing_url[0]
         else:
             cur.execute(
-                "INSERT INTO urls (name, created_at) VALUES (%s, %s) RETURNING id",
+                "INSERT INTO urls (name, created_at) VALUES (%s, %s) "
+                "RETURNING id",
                 (normalized_url, datetime.now())
             )
             url_id = cur.fetchone()[0]
@@ -111,12 +114,10 @@ def get_all_urls():
             ORDER BY u.created_at DESC
         """)
 
-
         return cur.fetchall()   
     finally:
         cur.close()
         conn.close()
-
 
 
 def add_url_check(id):
@@ -125,7 +126,7 @@ def add_url_check(id):
     cur = conn.cursor()
 
     try:
-        cur.execute("SELECT name FROM urls WHERE id = %s",(id,))
+        cur.execute("SELECT name FROM urls WHERE id = %s", (id,))
         url_result = cur.fetchone()
 
         if not url_result:
@@ -141,9 +142,10 @@ def add_url_check(id):
 
             parsed_data = html_parser(url_name) if status_code == 200 else {}
 
-
             cur.execute(
-                "INSERT INTO url_checks (url_id, status_code, h1, title, description) VALUES(%s, %s, %s, %s, %s) RETURNING id",
+                "INSERT INTO url_checks "
+                "(url_id, status_code, h1, title, description) "
+                "VALUES(%s, %s, %s, %s, %s) RETURNING id",
                 (id, 
                  status_code,
                  parsed_data.get('h1'),
@@ -174,7 +176,8 @@ def get_url_checks(id):
     try:
 
         cur.execute(
-            "SELECT * FROM url_checks WHERE url_id = %s ORDER BY created_at DESC",
+            "SELECT * FROM url_checks WHERE url_id = %s "
+            "ORDER BY created_at DESC",
             (id,)
         )
         return cur.fetchall()

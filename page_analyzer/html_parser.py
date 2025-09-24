@@ -1,5 +1,6 @@
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
+
 
 def html_parser(url):
 
@@ -14,10 +15,14 @@ def html_parser(url):
         soup = BeautifulSoup(html, 'html.parser')
 
         result["h1"] = soup.h1.get_text(strip=True) if soup.h1 else None
-        result["title"] = soup.title.get_text(strip=True) if soup.title else None
+        result["title"] = (
+            soup.title.get_text(strip=True) if soup.title else None
+        )
 
-        meta_tag = soup.find('meta', attrs={'name':'description'})
-        result["description"] = meta_tag.get('content', '').strip() if meta_tag else None
+        meta_tag = soup.find('meta', attrs={'name': 'description'})
+        result["description"] = (
+            meta_tag.get('content', '').strip() if meta_tag else None
+        )
 
         return result
     

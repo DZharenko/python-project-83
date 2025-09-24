@@ -1,8 +1,15 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, flash
-from models import validate_url, add_url, get_url_by_id, get_all_urls, get_url_checks, add_url_check 
+from flask import Flask, flash, redirect, render_template, request, url_for
+from models import (
+    add_url,
+    add_url_check,
+    get_all_urls,
+    get_url_by_id,
+    get_url_checks,
+    validate_url,
+)
 
 load_dotenv()
 
@@ -43,14 +50,13 @@ def url_detail(id):
     
     checks = get_url_checks(id)
        
-    return render_template("url_detail.html", url=url, checks = checks)
+    return render_template("url_detail.html", url=url, checks=checks)
 
 
 @app.route("/urls")
 def urls_list():
     urls = get_all_urls()
     return render_template("urls.html", urls=urls)
-
 
 
 @app.post("/urls/<id>/checks")
@@ -65,12 +71,11 @@ def url_checks(id):
         add_url_check(id)
         flash("Страница успешно добавлена", 'success')
         return redirect(url_for('url_detail', id=id))
-    except Exception as e:
+    except Exception:
         flash("Произошла ошибка при проверке", 'danger')
 
         return redirect(url_for('url_detail', id=id))    
 
-        
 
 if __name__ == "__main__":
     app.run(debug=True)
