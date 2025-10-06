@@ -70,7 +70,7 @@ def url_checks(id):
     
     try:
         add_url_check(id)
-        flash("Страница успешно добавлена", 'success')
+        flash("Страница успешно проверена", 'success')
         return redirect(url_for('url_detail', id=id))
     except Exception:
         flash("Произошла ошибка при проверке", 'danger')
