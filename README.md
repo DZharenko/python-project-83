@@ -1,6 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/DZharenko/python-project-83/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/DZharenko/python-project-83/actions)
 [![Python CI](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml/badge.svg)](https://github.com/DZharenko/python-project-83/actions/workflows/pyci.yaml)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DZharenko_python-project-83&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=DZharenko_python-project-83)
 
 🐍 Python Project 83
 # 🔍 Page Analyzer
